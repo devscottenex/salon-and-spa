@@ -1,0 +1,255 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * LUMÉA — Luxury Salon & Spa design system.
+ * Charcoal / ivory / champagne gold / sage. All colors in oklch.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 14px);
+  --radius-3xl: calc(var(--radius) + 26px);
+  --radius-4xl: calc(var(--radius) + 40px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ivory: var(--ivory);
+  --color-sand: var(--sand);
+  --color-sage: var(--sage);
+  --color-charcoal: var(--charcoal);
+  --color-ink: var(--ink);
+
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --ink: oklch(0.14 0.006 70);
+  --charcoal: oklch(0.19 0.008 70);
+  --ivory: oklch(0.96 0.012 85);
+  --sand: oklch(0.87 0.02 85);
+  --gold: oklch(0.79 0.09 84);
+  --gold-soft: oklch(0.88 0.055 88);
+  --sage: oklch(0.63 0.05 158);
+
+  --background: var(--ink);
+  --foreground: var(--ivory);
+  --card: oklch(0.21 0.008 70);
+  --card-foreground: var(--ivory);
+  --popover: oklch(0.19 0.008 70);
+  --popover-foreground: var(--ivory);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.16 0.008 70);
+  --secondary: oklch(0.26 0.008 70);
+  --secondary-foreground: var(--ivory);
+  --muted: oklch(0.24 0.007 70);
+  --muted-foreground: oklch(0.72 0.014 80);
+  --accent: oklch(0.28 0.02 84);
+  --accent-foreground: var(--ivory);
+  --destructive: oklch(0.58 0.19 25);
+  --destructive-foreground: var(--ivory);
+  --border: oklch(0.86 0.05 85 / 18%);
+  --input: oklch(0.86 0.05 85 / 22%);
+  --ring: var(--gold);
+
+  --gradient-gold: linear-gradient(
+    100deg,
+    oklch(0.72 0.07 78),
+    oklch(0.92 0.07 92),
+    oklch(0.76 0.08 80)
+  );
+  --gradient-veil: linear-gradient(
+    180deg,
+    oklch(0.14 0.006 70 / 0.15) 0%,
+    oklch(0.14 0.006 70 / 0.55) 55%,
+    oklch(0.14 0.006 70 / 0.96) 100%
+  );
+  --shadow-luxe: 0 30px 80px -40px oklch(0 0 0 / 0.9);
+  --shadow-gold: 0 0 0 1px oklch(0.86 0.05 85 / 0.35), 0 24px 60px -30px oklch(0.79 0.09 84 / 0.45);
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: oklch(0.79 0.09 84 / 0.3);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.79 0.09 84 / 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@utility text-gold-gradient {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+@utility glass-panel {
+  background: oklch(0.22 0.008 70 / 0.55);
+  backdrop-filter: blur(18px) saturate(130%);
+  border: 1px solid oklch(0.86 0.05 85 / 0.16);
+}
+
+@utility hairline-gold {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.86 0.05 85 / 0.55),
+    transparent
+  );
+  height: 1px;
+}
+
+@utility luxe-card {
+  background: oklch(0.2 0.008 70 / 0.7);
+  border: 1px solid oklch(0.86 0.05 85 / 0.14);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-luxe);
+  transition:
+    border-color 0.6s var(--ease-luxe),
+    transform 0.6s var(--ease-luxe),
+    box-shadow 0.6s var(--ease-luxe);
+}
+
+@utility luxe-card-hover {
+  &:hover {
+    border-color: oklch(0.86 0.05 85 / 0.45);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-gold);
+  }
+}
+
+@utility veil {
+  background: var(--gradient-veil);
+}
+
+@utility no-cursor {
+  @media (pointer: fine) {
+    cursor: none;
+  }
+}
+
+@keyframes lumea-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes lumea-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(18px, -320px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes lumea-scroll-dot {
+  0% {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(22px);
+    opacity: 0;
+  }
+}
+
+@utility float-slow {
+  animation: lumea-float 7s ease-in-out infinite;
+}
